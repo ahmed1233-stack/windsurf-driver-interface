@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-pattern"></div>
+    <div class="background-gradient"></div>
+
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <div class="logo-container">
+                <i class="fas fa-truck-fast"></i>
+            </div>
+            <h1>Welcome</h1>
+            <p class="subtitle">Fast and reliable delivery service</p>
+            <div class="login-buttons">
+                <button class="login-btn customer-btn" onclick="login('customer')">
+                    <i class="fas fa-user"></i>
+                    Login as Customer
+                </button>
+                <button class="login-btn driver-btn" onclick="login('driver')">
+                    <i class="fas fa-car"></i>
+                    Login as Driver
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="order-container hidden" id="customerContainer">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <header class="app-header">
+            <h1><i class="fas fa-truck-fast"></i> Create Order</h1>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </header>
+
+        <div class="order-form">
+            <div class="location-section">
+                <div class="pickup-location">
+                    <i class="fas fa-map-marker-alt pickup-icon"></i>
+                    <input type="text" id="pickupLocation" placeholder="Pickup Location">
+                </div>
+                <div class="location-connector"></div>
+                <div class="delivery-location">
+                    <i class="fas fa-flag-checkered delivery-icon"></i>
+                    <input type="text" id="deliveryLocation" placeholder="Delivery Location">
+                </div>
+            </div>
+
+            <div class="order-details">
+                <textarea id="orderDescription" placeholder="Order details (items, special instructions, etc.)"></textarea>
+                
+                <div class="additional-info">
+                    <select id="orderType" class="custom-select">
+                        <option value="">Select Order Type</option>
+                        <option value="food">Food Delivery</option>
+                        <option value="package">Package Delivery</option>
+                        <option value="grocery">Grocery Delivery</option>
+                    </select>
+
+                    <input type="number" id="estimatedWeight" placeholder="Estimated Weight (kg)">
+                </div>
+            </div>
+
+            <button class="submit-order-btn" onclick="submitOrder()">
+                <i class="fas fa-paper-plane"></i>
+                Place Order
+            </button>
+        </div>
+    </div>
+
+    <!-- Driver Interface -->
+    <div class="driver-container hidden" id="driverContainer">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <header class="app-header">
+            <h1><i class="fas fa-car"></i> Available Orders</h1>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </header>
+
+        <div class="orders-list" id="ordersList">
+            <!-- Orders will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

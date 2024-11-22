@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-white text-neutral-900;
+  }
+
+  /* Improved scrollbar styling */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-100 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-200 rounded-full hover:bg-neutral-300 transition-colors;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2.5 rounded-lg font-medium transition-all duration-200 text-sm;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-400 text-gray-900 hover:bg-primary-500 shadow-sm;
+  }
+  
+  .btn-secondary {
+    @apply bg-card text-gray-900 border border-gray-200 hover:bg-gray-50 shadow-sm;
+  }
+  
+  .card {
+    @apply bg-neutral-50/50 rounded-xl shadow-sm hover:shadow-md transition-all duration-200;
+  }
+  
+  .input {
+    @apply w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-400 focus:border-transparent text-sm;
+  }
+
+  .badge {
+    @apply px-2 py-1 text-xs font-medium rounded-full;
+  }
+
+  .badge-yellow {
+    @apply bg-primary-100 text-primary-800;
+  }
+
+  .badge-gray {
+    @apply bg-gray-50 text-gray-800 border border-gray-100;
+  }
+
+  .badge-green {
+    @apply bg-secondary-100 text-secondary-800;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full inline-block;
+  }
+
+  .status-dot-success {
+    @apply bg-secondary-500;
+  }
+
+  .status-dot-warning {
+    @apply bg-primary-500;
+  }
+
+  .status-dot-error {
+    @apply bg-red-500;
+  }
+
+  .status-dot-available {
+    @apply bg-secondary-500;
+  }
+
+  .status-dot-busy {
+    @apply bg-primary-500;
+  }
+
+  .status-dot-offline {
+    @apply bg-neutral-400;
+  }
+
+  /* Badges */
+  .badge-primary {
+    @apply bg-primary-50 text-primary-700;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary-50 text-secondary-700;
+  }
+
+  /* Smooth transitions */
+  .transition-base {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  /* Card hover effects */
+  .hover-card {
+    @apply hover:shadow-hover transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  /* Input focus effects */
+  .focus-ring {
+    @apply focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Ensure animations are smooth */
+* {
+  @apply transition-transform motion-reduce:transition-none motion-reduce:hover:transform-none;
+}
