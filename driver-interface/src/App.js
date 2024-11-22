@@ -13,7 +13,7 @@ function App() {
   const [currentView, setCurrentView] = useState('dashboard');
   const [driverStatus, setDriverStatus] = useState('offline');
   const [showEarnings, setShowEarnings] = useState(false);
-  const [notifications, setNotifications] = useState([]);
+  const [notifications] = useState([]);
 
   const handleLogin = (userData) => {
     setUser(userData);
@@ -57,7 +57,6 @@ function App() {
                       setDriverStatus={setDriverStatus}
                       showEarnings={showEarnings}
                       setShowEarnings={setShowEarnings}
-                      notifications={notifications}
                       handleLogout={handleLogout}
                     />
                   );
@@ -72,7 +71,6 @@ function App() {
                       setDriverStatus={setDriverStatus}
                       showEarnings={showEarnings}
                       setShowEarnings={setShowEarnings}
-                      notifications={notifications}
                       handleLogout={handleLogout}
                     />
                   );

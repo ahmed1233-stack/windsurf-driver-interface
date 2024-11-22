@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { GoogleMap, LoadScript, Marker, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, DirectionsRenderer } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
@@ -19,20 +19,33 @@ const MapComponent = ({
   isInteractive = true 
 }) => {
   const [directions, setDirections] = useState(null);
-  const [map, setMap] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const onMapLoad = useCallback((map) => {
-    setMap(map);
+  const onMapLoad = useCallback((loadedMap) => {
     setIsLoading(false);
   }, []);
 
   const onLoadError = useCallback((error) => {
-    console.error('Google Maps loading error:', error);
-    setError('Failed to load Google Maps. Please check your internet connection and try again.');
+    setError(error);
     setIsLoading(false);
   }, []);
+
+  const handleMapClick = useCallback((e) => {
+    if (!isInteractive) return;
+
+    const clickedLocation = {
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng()
+    };
+
+    // If pickup not set, set pickup, else set delivery
+    if (!pickupLocation) {
+      onPickupSelect?.(clickedLocation);
+    } else if (!deliveryLocation) {
+      onDeliverySelect?.(clickedLocation);
+    }
+  }, [pickupLocation, deliveryLocation, onPickupSelect, onDeliverySelect, isInteractive]);
 
   // Calculate and display route when both locations are set
   React.useEffect(() => {
@@ -56,22 +69,6 @@ const MapComponent = ({
       );
     }
   }, [pickupLocation, deliveryLocation]);
-
-  const handleMapClick = useCallback((e) => {
-    if (!isInteractive) return;
-
-    const clickedLocation = {
-      lat: e.latLng.lat(),
-      lng: e.latLng.lng()
-    };
-
-    // If pickup not set, set pickup, else set delivery
-    if (!pickupLocation) {
-      onPickupSelect?.(clickedLocation);
-    } else if (!deliveryLocation) {
-      onDeliverySelect?.(clickedLocation);
-    }
-  }, [pickupLocation, deliveryLocation, onPickupSelect, onDeliverySelect, isInteractive]);
 
   if (error) {
     return (
